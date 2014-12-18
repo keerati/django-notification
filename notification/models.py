@@ -119,7 +119,8 @@ class NoticeTemplate(models.Model):
         unique=True, verbose_name=_("notice type")
     )
     subject = models.CharField(_("subject"), max_length=70)
-    body = models.TextField()  
+    body_text = models.TextField(default="") 
+    body_html = models.TextField(default="")  
 
 def get_notification_language(user):
     """
