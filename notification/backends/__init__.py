@@ -17,6 +17,7 @@ def load_backends():
     backends = []
     configured_backends = getattr(settings, "NOTIFICATION_BACKENDS", default_backends)
     for medium_id, bits in enumerate(configured_backends):
+        medium_id = str(medium_id)
         if len(bits) == 2:
             label, backend_path = bits
             spam_sensitivity = None
