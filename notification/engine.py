@@ -44,6 +44,7 @@ def send_all(*args):
     lock = acquire_lock(*args)
     batches, sent, sent_actual = 0, 0, 0
     start_time = time.time()
+    user_model = get_user_model()
 
     try:
         # nesting the try statement to be Python 2.4
@@ -52,13 +53,13 @@ def send_all(*args):
                 notices = pickle.loads(base64.b64decode(queued_batch.pickled_data))
                 for user, label, extra_context, sender in notices:
                     try:
-                        user = get_user_model().objects.get(pk=user)
+                        user = user_model.objects.get(pk=user)
                         logging.info("emitting notice {} to {}".format(label, user))
                         # call this once per user to be atomic and allow for logging to
                         # accurately show how long each takes.
                         if notification.send_now([user], label, extra_context, sender):
                             sent_actual += 1
-                    except get_user_model().DoesNotExist:
+                    except user_model.DoesNotExist:
                         # Ignore deleted users, just warn about them
                         logging.warning(
                             "not emitting notice {} to user {} since it does not exist".format(
