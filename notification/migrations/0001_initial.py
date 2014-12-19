@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
             name='NoticeType',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('label', models.CharField(max_length=40, verbose_name='label')),
+                ('label', models.CharField(unique=True, max_length=40, verbose_name='label')),
                 ('display', models.CharField(max_length=50, verbose_name='display')),
                 ('description', models.CharField(max_length=100, verbose_name='description')),
                 ('default', models.IntegerField(verbose_name='default')),
