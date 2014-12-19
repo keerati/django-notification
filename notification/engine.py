@@ -46,6 +46,8 @@ def send_all(*args):
     start_time = time.time()
     user_model = get_user_model()
 
+    if not lock: return
+
     try:
         # nesting the try statement to be Python 2.4
         try:
