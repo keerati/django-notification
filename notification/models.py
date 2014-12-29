@@ -114,14 +114,6 @@ class NoticeQueueBatch(models.Model):
     pickled_data = models.TextField()
 
 
-class NoticeTemplate(models.Model):
-    notice_type = models.ForeignKey(NoticeType, 
-        unique=True, verbose_name=_("notice type")
-    )
-    subject = models.CharField(_("subject"), max_length=70)
-    body_text = models.TextField(default="") 
-    body_html = models.TextField(default="")  
-
 def get_notification_language(user):
     """
     Returns site-specific notification language for this user. Raises

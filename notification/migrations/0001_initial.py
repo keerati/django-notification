@@ -36,18 +36,6 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='NoticeTemplate',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('subject', models.CharField(max_length=70, verbose_name='subject')),
-                ('body_text', models.TextField(default='')),
-                ('body_html', models.TextField(default='')),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
             name='NoticeType',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -61,12 +49,6 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'notice types',
             },
             bases=(models.Model,),
-        ),
-        migrations.AddField(
-            model_name='noticetemplate',
-            name='notice_type',
-            field=models.ForeignKey(verbose_name='notice type', to='notification.NoticeType', unique=True),
-            preserve_default=True,
         ),
         migrations.AddField(
             model_name='noticesetting',
